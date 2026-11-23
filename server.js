@@ -53,19 +53,19 @@ db.serialize(() => {
     db.run(`DELETE FROM products`, () => {
         const initialProducts = [
             ['Rose Glow Vitamin C Hyaluron Serumu', 'uz-qullugu', 48.50, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600'],
-            ['Velvet Soft Nude Dodaq Boyası', 'makiyaj', 26.00, 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=600'],
+            ['Velvet Soft Nude Dodaq Boyası', 'makiyaj', 26.00, 'DIOR DODAQ BOYASI.jpg'],
             ['Botanical Repair Saç Maskası', 'sac-qullugu', 34.00, 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=600'],
             ['Luminous Glow SPF 50+ Günəş Kremi', 'uz-qullugu', 39.90, 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600'],
-            ['Jasmine & French Vanilla Ətir 100ml', 'etirler', 115.00, 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=600'],
+            ['Jasmine & French Vanilla Ətir 100ml', 'etirler', 115.00, 'LIBRE PARFUM.webp'],
             ['Shea Butter Bədən Losyonu', 'beden-qullugu', 24.50, 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600'],
-            ['YSL Loveshine Dodaq Boyası', 'makiyaj', 45.00, 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&q=80&w=600'],
-            ['Professional Makiyaj Fırçaları', 'makiyaj', 55.00, 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=600'],
-            ['Dior Backstage Glow Face Palette (Highlighter)', 'makiyaj', 95.00, 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=600'],
-            ['Dior Addict Lip Glow / Lip Oil', 'makiyaj', 78.00, 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=600'],
-            ['Dior J\'adore Eau de Parfum', 'etirler', 240.00, 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=600'],
-            ['La Roche-Posay Effaclar Üz Yuma Geli', 'uz-qullugu', 32.50, 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&q=80&w=600'],
-            ['Victoria\'s Secret Bare Vanilla Bədən Spreyi', 'etirler', 38.00, 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=80&w=600'],
-            ['Pantene Pro-V Arqan Yağı', 'sac-qullugu', 14.90, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&q=80&w=600']
+            ['YSL Loveshine Dodaq Boyası', 'makiyaj', 45.00, 'YSL DODAQ.jpeg'],
+            ['Professional Makiyaj Fırçaları', 'makiyaj', 55.00, 'FIRCA.jfif'],
+            ['Dior Backstage Glow Face Palette (Highlighter)', 'makiyaj', 95.00, 'DIRO HIGH.jfif'],
+            ['Dior Addict Lip Glow / Lip Oil', 'makiyaj', 78.00, 'DIOR GLOSS.jpeg'],
+            ['Dior J\'adore Eau de Parfum', 'etirler', 240.00, 'JODOR.jpg'],
+            ['La Roche-Posay Effaclar Üz Yuma Geli', 'uz-qullugu', 32.50, 'LA ROCHE POSAY UZ YUMA GELI.png'],
+            ['Victoria\'s Secret Bare Vanilla Bədən Spreyi', 'etirler', 38.00, 'VICTORIA SECRET.webp'],
+            ['Pantene Pro-V Arqan Yağı', 'sac-qullugu', 14.90, 'ARGAN YAGI.avif']
         ];
 
         const stmt = db.prepare(`INSERT INTO products (name, category, price, image) VALUES (?, ?, ?, ?)`);
