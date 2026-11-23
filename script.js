@@ -3,132 +3,21 @@ const API_URL = window.location.origin && window.location.origin.startsWith('htt
     : 'http://localhost:5000/api';
 
 const defaultProducts = [
-    {
-        id: 1,
-        name: 'Rose Glow Vitamin C Hyaluron Serumu',
-        category: 'uz-qullugu',
-        price: 48.50,
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600',
-        description: 'Stabil C vitamini və hialuron turşusu ilə zəngin serum dəri tonunu bərabərləşdirir, dərin nəmləndirmə və təbii parlaqlıq verir.'
-    },
-    {
-        id: 2,
-        name: 'Velvet Soft Nude Dodaq Boyası',
-        category: 'makiyaj',
-        price: 26.00,
-        image: 'DIOR DODAQ BOYASI.jpg',
-        description: 'Məxmər teksturalı nude dodaq boyası dodaqları qurutmadan yumşaq və qalıcı rəng örtüyü yaradır.'
-    },
-    {
-        id: 3,
-        name: 'Botanical Repair Saç Maskası',
-        category: 'sac-qullugu',
-        price: 34.00,
-        image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=600',
-        description: 'Bitki ekstraktları ilə zəngin bərpaedici saç maskası zədələnmiş saç tellərini qidalandırır, asan daranma və ipək yumşaqlıq təmin edir.'
-    },
-    {
-        id: 4,
-        name: 'Luminous Glow SPF 50+ Günəş Kremi',
-        category: 'uz-qullugu',
-        price: 39.90,
-        image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600',
-        description: 'SPF 50+ qoruma faktoru ilə UVA/UVB şüalarına qarşı yüksək müdafiə yaradır, dəridə ağ iz qoymadan yüngül parıltı bəxş edir.'
-    },
-    {
-        id: 5,
-        name: 'Jasmine & French Vanilla Ətir 100ml',
-        category: 'etirler',
-        price: 115.00,
-        image: 'LIBRE PARFUM.webp',
-        description: 'Jasmin çiçəyinin zərif notları ilə fransız vanilinin isti və cazibədar harmoniyasını birləşdirən qalıcı ətir.'
-    },
-    {
-        id: 6,
-        name: 'Shea Butter Bədən Losyonu',
-        category: 'beden-qullugu',
-        price: 24.50,
-        image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600',
-        description: 'Şi yağı tərkibli bədən losyonu quru dərini intensiv nəmləndirir, sürətlə hopur və gün boyu yumşaqlıq saxlayır.'
-    },
-    {
-        id: 7,
-        name: 'YSL Loveshine Dodaq Boyası',
-        category: 'makiyaj',
-        price: 45.00,
-        image: 'YSL DODAQ.jpeg',
-        description: 'Parlaq və nəmləndirici formulaya malik dodaq boyası dodaqlara canlı rəng, təravət və güzgüvari parıltı qazandırır.'
-    },
-    {
-        id: 8,
-        name: 'Professional Makiyaj Fırçaları',
-        category: 'makiyaj',
-        price: 55.00,
-        image: 'FIRCA.jfif',
-        description: 'Yumşaq və sıx tüklərdən hazırlanmış peşəkar fırça dəsti tonal krem, ənlik, haylayter və göz makiyajının bərabər tətbiqi üçündür.'
-    },
-    {
-        id: 9,
-        name: 'Dior Backstage Glow Face Palette (Highlighter)',
-        category: 'makiyaj',
-        price: 95.00,
-        image: 'DIRO HIGH.jfif',
-        description: 'Çoxtonlu işıqlandırıcı çalarlardan ibarət palitra yanaq, qaş altı və körpücük sümüklərinə təbii və peşəkar parıltı verir.'
-    },
-    {
-        id: 10,
-        name: 'Dior Addict Lip Glow / Lip Oil',
-        category: 'makiyaj',
-        price: 78.00,
-        image: 'DIOR GLOSS.jpeg',
-        description: 'Dodaqları qidalandıran, dolğun və parlaq göstərən dodaq yağı/balzamı təbii çalarla gündəlik qulluq və gözəllik təmin edir.'
-    },
-    {
-        id: 11,
-        name: 'Dior J\'adore Eau de Parfum',
-        category: 'etirler',
-        price: 240.00,
-        image: 'JODOR.jpg',
-        description: 'İlanq-ilanq, Dəməşq qızılgülü və yasəmən notlarının zərif buketindən ibarət klassik, qadına xas və dəbdəbəli ətir.'
-    },
-    {
-        id: 12,
-        name: 'La Roche-Posay Effaclar Üz Yuma Geli',
-        category: 'uz-qullugu',
-        price: 32.50,
-        image: 'LA ROCHE POSAY UZ YUMA GELI.png',
-        description: 'Yağlı və problemli dərilər üçün nəzərdə tutulmuş təmizləyici gel artıq sebumu aradan qaldırır və məsamələri dərindən təmizləyir.'
-    },
-    {
-        id: 13,
-        name: 'Victoria\'s Secret Bare Vanilla Bədən Spreyi',
-        category: 'etirler',
-        price: 38.00,
-        image: 'VICTORIA SECRET.webp',
-        description: 'Çırpılmış vanil, kaşmir və yumşaq müşk notları ilə bədəndə yüngül, şirin və uzunmüddətli qoxu buraxan bədən spreyi.'
-    },
-    {
-        id: 14,
-        name: 'Pantene Pro-V Arqan Yağı',
-        category: 'sac-qullugu',
-        price: 14.90,
-        image: 'ARGAN YAGI.avif',
-        description: 'Arqan yağı tərkibli saç baxım yağı saçların uclarındakı quruluğu azaldır, elektriklənməni önləyir və saçlara sağlam parıltı verir.'
-    }
+    { id: 1, name: 'Rose Glow Vitamin C Hyaluron Serumu', category: 'uz-qullugu', price: 48.50, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600' },
+    { id: 2, name: 'Velvet Soft Nude Dodaq Boyası', category: 'makiyaj', price: 26.00, image: 'DIOR DODAQ BOYASI.jpg' },
+    { id: 3, name: 'Botanical Repair Saç Maskası', category: 'sac-qullugu', price: 34.00, image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=600' },
+    { id: 4, name: 'Luminous Glow SPF 50+ Günəş Kremi', category: 'uz-qullugu', price: 39.90, image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600' },
+    { id: 5, name: 'Jasmine & French Vanilla Ətir 100ml', category: 'etirler', price: 115.00, image: 'LIBRE PARFUM.webp' },
+    { id: 6, name: 'Shea Butter Bədən Losyonu', category: 'beden-qullugu', price: 24.50, image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600' },
+    { id: 7, name: 'YSL Loveshine Dodaq Boyası', category: 'makiyaj', price: 45.00, image: 'YSL DODAQ.jpeg' },
+    { id: 8, name: 'Professional Makiyaj Fırçaları', category: 'makiyaj', price: 55.00, image: 'FIRCA.jfif' },
+    { id: 9, name: 'Dior Backstage Glow Face Palette (Highlighter)', category: 'makiyaj', price: 95.00, image: 'DIRO HIGH.jfif' },
+    { id: 10, name: 'Dior Addict Lip Glow / Lip Oil', category: 'makiyaj', price: 78.00, image: 'DIOR GLOSS.jpeg' },
+    { id: 11, name: 'Dior J\'adore Eau de Parfum', category: 'etirler', price: 240.00, image: 'JODOR.jpg' },
+    { id: 12, name: 'La Roche-Posay Effaclar Üz Yuma Geli', category: 'uz-qullugu', price: 32.50, image: 'LA ROCHE POSAY UZ YUMA GELI.png' },
+    { id: 13, name: 'Victoria\'s Secret Bare Vanilla Bədən Spreyi', category: 'etirler', price: 38.00, image: 'VICTORIA SECRET.webp' },
+    { id: 14, name: 'Pantene Pro-V Arqan Yağı', category: 'sac-qullugu', price: 14.90, image: 'ARGAN YAGI.avif' } 
 ];
-
-function getProductDescription(product) {
-    if (product && product.description && product.description.trim() !== '') {
-        return product.description;
-    }
-    const matched = defaultProducts.find(
-        dp => dp.name.toLowerCase() === (product?.name || '').toLowerCase()
-    );
-    if (matched && matched.description) {
-        return matched.description;
-    }
-    return 'Təbii tərkibli, premium keyfiyyətli lüks kosmetika məhsulu. Dərinizə xüsusi qulluq və parlaqlıq bəxş edir.';
-}
 
 let products = defaultProducts;
 const categories = [
@@ -152,12 +41,7 @@ async function loadBackendData() {
         const prodRes = await fetch(`${API_URL}/products`);
         if (prodRes.ok) {
             const dbProducts = await prodRes.json();
-            if (dbProducts && dbProducts.length > 0) {
-                products = dbProducts.map(p => ({
-                    ...p,
-                    description: getProductDescription(p)
-                }));
-            }
+            if (dbProducts && dbProducts.length > 0) products = dbProducts;
         }
         const ordRes = await fetch(`${API_URL}/orders`);
         if (ordRes.ok) {
@@ -368,10 +252,9 @@ function filterCategory(catId) {
 
 // Məhsul detalı modali üçün funksiyalar
 function openProductDetail(productId) {
-    const product = products.find(p => Number(p.id) === Number(productId));
+    const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    const descText = getProductDescription(product);
     const content = document.getElementById('product-detail-content');
     content.innerHTML = `
         <img src="${product.image}" class="w-full sm:w-1/2 h-56 object-contain bg-white rounded-xl">
@@ -379,7 +262,7 @@ function openProductDetail(productId) {
             <div>
                 <span class="text-[10px] bg-pink-100 text-[#880E4F] px-2.5 py-1 rounded-full font-semibold uppercase">${product.category}</span>
                 <h2 class="font-serif text-xl font-bold text-gray-900 mt-2">${product.name}</h2>
-                <p class="text-xs text-gray-500 mt-2">${descText}</p>
+                <p class="text-xs text-gray-500 mt-2">Təbii tərkibli, premium keyfiyyətli lüks kosmetika məhsulu. Dərinizə xüsusi qulluq və parlaqlıq bəxş edir.</p>
             </div>
             <div class="mt-4">
                 <span class="text-xl font-bold text-[#880E4F] block mb-3">${Number(product.price).toFixed(2)} ₼</span>
@@ -407,9 +290,8 @@ function toggleCardInputs(paymentMethod) {
 }
 
 function addToCart(productId) {
-    const product = products.find(p => Number(p.id) === Number(productId));
-    if (!product) return;
-    const existing = cart.find(item => Number(item.id) === Number(productId));
+    const product = products.find(p => p.id === productId);
+    const existing = cart.find(item => item.id === productId);
     if (existing) {
         existing.quantity += 1;
     } else {
@@ -453,7 +335,7 @@ function closeCart() {
 }
 
 function removeFromCart(id) {
-    cart = cart.filter(i => Number(i.id) !== Number(id));
+    cart = cart.filter(i => i.id !== id);
     localStorage.setItem('ab_cart', JSON.stringify(cart));
     openCart();
     updateCartBadge();
@@ -629,3 +511,6 @@ function updateHeaderUserMenu() {
         `;
     }
 }
+
+loadBackendData();
+
