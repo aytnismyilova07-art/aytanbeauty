@@ -1,10 +1,12 @@
- const express = require('express');
+const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static(__dirname));
 
 // SQLite verilənlər bazasına qoşulma
 const db = new sqlite3.Database('./database.sqlite', (err) => {
