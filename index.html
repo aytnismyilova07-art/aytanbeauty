@@ -1,0 +1,124 @@
+ <!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AytanBeauty Luxury Cosmetics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FAF7F5] text-gray-800 font-sans selection:bg-[#F8BBD0] selection:text-[#880E4F]">
+
+    <!-- Üst Banner -->
+    <div class="bg-[#880E4F] text-white text-xs py-2 px-4 text-center">
+        ✨  | Əlaqə: +994 50 777 00 11
+    </div>
+
+    <!-- Başlıq (Header) -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-[#F4ECE1] sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div onclick="changePage('home')" class="cursor-pointer flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#880E4F] to-[#AD1457] flex items-center justify-center text-white font-serif font-bold text-xl">A</div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold text-[#880E4F]">Aytan<span class="text-gray-900 font-light">Beauty</span></span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-[#AD1457] -mt-1 font-semibold">Luxury Cosmetics</span>
+                </div>
+            </div>
+
+            <!-- Naviqasiya Menyu -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <button onclick="changePage('home')" class="hover:text-[#880E4F] transition">Ana səhifə</button>
+                <button onclick="changePage('products')" class="hover:text-[#880E4F] transition">Məhsullar</button>
+            </nav>
+
+            <!-- Sağ Hissə: Səbət və İstifadəçi -->
+            <div class="flex items-center space-x-4">
+                <button onclick="openCart()" class="relative p-2 text-gray-700 hover:text-[#880E4F] transition">
+                    🛍️ <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-[#AD1457] text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <div id="user-menu-container">
+                    <button onclick="openAuthModal()" class="px-4 py-2 rounded-full bg-[#880E4F] text-white text-xs font-medium hover:bg-[#AD1457] shadow-md transition">
+                        Daxil ol / Qeydiyyat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Əsas Kontent Konteyneri -->
+    <main id="main-content" class="max-w-7xl mx-auto px-6 py-10 min-h-[70vh]">
+        <!-- JavaScript vasitəsilə səhifələr bura yüklənəcək -->
+    </main>
+
+    <!-- MƏHSUL DETALI MODALI -->
+    <div id="product-detail-modal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="closeProductDetail()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            <div id="product-detail-content" class="flex flex-col sm:flex-row gap-6">
+                <!-- JS ilə dolacaq -->
+            </div>
+        </div>
+    </div>
+
+    <!-- GİRİŞ / QEYDİYYAT MODALI -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            <h2 id="auth-title" class="font-serif text-2xl font-bold text-gray-900 mb-4">Hesaba Giriş</h2>
+            
+            <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div id="reg-fields" class="hidden space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Ad və Soyad</label>
+                        <input type="text" id="auth-name" class="w-full px-4 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-[#880E4F] outline-none" placeholder="Aytən İsmayılova">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">E-poçt ünvanı</label>
+                    <input type="email" id="auth-email" required class="w-full px-4 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-[#880E4F] outline-none" placeholder="ad@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Şifrə</label>
+                    <input type="password" id="auth-password" required class="w-full px-4 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-[#880E4F] outline-none" placeholder="••••••••">
+                </div>
+                <button type="submit" id="auth-btn" class="w-full py-3 bg-[#880E4F] text-white rounded-xl font-medium hover:bg-[#AD1457] transition shadow-md">Daxil ol</button>
+            </form>
+
+            <div class="mt-4 text-center text-xs">
+                <span id="auth-switch-text">Hesabınız yoxdur?</span> 
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-[#880E4F] font-bold underline ml-1">Qeydiyyatdan keç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SƏBƏT MODALI -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-6 overflow-y-auto">
+            <div class="flex items-center justify-between pb-4 border-b mb-4">
+                <h3 class="font-serif text-xl font-bold text-gray-900">Səbətiniz</h3>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-gray-600 font-bold text-lg">✕</button>
+            </div>
+            
+            <!-- Məhsulların siyahısı -->
+            <div id="cart-items-list" class="flex-1 space-y-4 overflow-y-auto">
+                <!-- JS ilə dolacaq -->
+            </div>
+
+            <!-- Cəmi və Sifarişə keçid -->
+            <div class="border-t pt-4 mt-4 space-y-4">
+                <div class="flex justify-between items-center font-bold text-lg">
+                    <span>Yekun məbləğ:</span>
+                    <span id="cart-total-price" class="text-[#880E4F]">0.00 ₼</span>
+                </div>
+                <button onclick="proceedToCheckout()" class="w-full py-3 bg-[#880E4F] text-white rounded-xl font-medium hover:bg-[#AD1457] transition shadow-md text-center">
+                    Sifarişi Rəsmiləşdir
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
