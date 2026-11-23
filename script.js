@@ -1,20 +1,22 @@
- const API_URL = 'http://localhost:5000/api';
+const API_URL = window.location.origin && window.location.origin.startsWith('http')
+    ? `${window.location.origin}/api`
+    : 'http://localhost:5000/api';
 
 const defaultProducts = [
     { id: 1, name: 'Rose Glow Vitamin C Hyaluron Serumu', category: 'uz-qullugu', price: 48.50, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600' },
-    { id: 2, name: 'Velvet Soft Nude Dodaq Boyası', category: 'makiyaj', price: 26.00, image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=600' },
+    { id: 2, name: 'Velvet Soft Nude Dodaq Boyası', category: 'makiyaj', price: 26.00, image: 'DIOR DODAQ BOYASI.jpg' },
     { id: 3, name: 'Botanical Repair Saç Maskası', category: 'sac-qullugu', price: 34.00, image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=600' },
     { id: 4, name: 'Luminous Glow SPF 50+ Günəş Kremi', category: 'uz-qullugu', price: 39.90, image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=600' },
-    { id: 5, name: 'Jasmine & French Vanilla Ətir 100ml', category: 'etirler', price: 115.00, image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=600' },
+    { id: 5, name: 'Jasmine & French Vanilla Ətir 100ml', category: 'etirler', price: 115.00, image: 'LIBRE PARFUM.webp' },
     { id: 6, name: 'Shea Butter Bədən Losyonu', category: 'beden-qullugu', price: 24.50, image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=600' },
-    { id: 7, name: 'YSL Loveshine Dodaq Boyası', category: 'makiyaj', price: 45.00, image: 'IMAGES/YSL DODAQ.jpeg' },
-    { id: 8, name: 'Professional Makiyaj Fırçaları', category: 'makiyaj', price: 55.00, image: 'IMAGES/FIRCA.jfif' },
-    { id: 9, name: 'Dior Backstage Glow Face Palette (Highlighter)', category: 'makiyaj', price: 95.00, image: 'IMAGES/DIRO HIGH.jfif' },
-    { id: 10, name: 'Dior Addict Lip Glow / Lip Oil', category: 'makiyaj', price: 78.00, image: 'IMAGES/DIOR GLOSS.jpeg' },
-    { id: 11, name: 'Dior J\'adore Eau de Parfum', category: 'etirler', price: 240.00, image: 'IMAGES/JODOR.jpg' },
-    { id: 12, name: 'La Roche-Posay Effaclar Üz Yuma Geli', category: 'uz-qullugu', price: 32.50, image: 'IMAGES/LA ROCHE POSAY UZ YUMA GELI.png' },
-    { id: 13, name: 'Victoria\'s Secret Bare Vanilla Bədən Spreyi', category: 'etirler', price: 38.00, image: 'IMAGES/VICTORIA SECRET.webp' },
-    { id: 14, name: 'Pantene Pro-V Arqan Yağı', category: 'sac-qullugu', price: 14.90, image: 'IMAGES/ARGAN YAGI.avif' } 
+    { id: 7, name: 'YSL Loveshine Dodaq Boyası', category: 'makiyaj', price: 45.00, image: 'YSL DODAQ.jpeg' },
+    { id: 8, name: 'Professional Makiyaj Fırçaları', category: 'makiyaj', price: 55.00, image: 'FIRCA.jfif' },
+    { id: 9, name: 'Dior Backstage Glow Face Palette (Highlighter)', category: 'makiyaj', price: 95.00, image: 'DIRO HIGH.jfif' },
+    { id: 10, name: 'Dior Addict Lip Glow / Lip Oil', category: 'makiyaj', price: 78.00, image: 'DIOR GLOSS.jpeg' },
+    { id: 11, name: 'Dior J\'adore Eau de Parfum', category: 'etirler', price: 240.00, image: 'JODOR.jpg' },
+    { id: 12, name: 'La Roche-Posay Effaclar Üz Yuma Geli', category: 'uz-qullugu', price: 32.50, image: 'LA ROCHE POSAY UZ YUMA GELI.png' },
+    { id: 13, name: 'Victoria\'s Secret Bare Vanilla Bədən Spreyi', category: 'etirler', price: 38.00, image: 'VICTORIA SECRET.webp' },
+    { id: 14, name: 'Pantene Pro-V Arqan Yağı', category: 'sac-qullugu', price: 14.90, image: 'ARGAN YAGI.avif' } 
 ];
 
 let products = defaultProducts;
@@ -225,8 +227,8 @@ function renderProductsHTML(prods) {
     if (!prods || prods.length === 0) return '<p class="text-gray-500">Məhsul tapılmadı.</p>';
     return prods.map(p => `
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-pink-50 hover:shadow-xl transition-all flex flex-col justify-between">
-            <div cursor-pointer onclick="openProductDetail(${p.id})" class="cursor-pointer">
-                <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover rounded-xl mb-4">
+            <div onclick="openProductDetail(${p.id})" class="cursor-pointer">
+                <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-contain bg-white rounded-xl mb-4">
                 <h3 class="font-semibold text-gray-800 text-sm mb-1 hover:text-[#880E4F] transition">${p.name}</h3>
             </div>
             <div class="flex items-center justify-between mt-4">
@@ -255,7 +257,7 @@ function openProductDetail(productId) {
 
     const content = document.getElementById('product-detail-content');
     content.innerHTML = `
-        <img src="${product.image}" class="w-full sm:w-1/2 h-56 object-cover rounded-xl">
+        <img src="${product.image}" class="w-full sm:w-1/2 h-56 object-contain bg-white rounded-xl">
         <div class="flex-1 flex flex-col justify-between">
             <div>
                 <span class="text-[10px] bg-pink-100 text-[#880E4F] px-2.5 py-1 rounded-full font-semibold uppercase">${product.category}</span>
@@ -313,7 +315,7 @@ function openCart() {
     list.innerHTML = cart.length === 0 ? '<p class="text-gray-400 text-center py-10">Səbətiniz boşdur.</p>' : cart.map(item => `
         <div class="flex items-center justify-between border-b pb-3">
             <div class="flex items-center space-x-3">
-                <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
+                <img src="${item.image}" class="w-12 h-12 object-contain bg-white rounded-lg">
                 <div>
                     <h4 class="text-xs font-semibold text-gray-800">${item.name}</h4>
                     <span class="text-xs text-gray-500">${Number(item.price).toFixed(2)} ₼ x ${item.quantity}</span>
