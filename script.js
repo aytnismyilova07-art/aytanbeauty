@@ -368,7 +368,7 @@ function filterCategory(catId) {
 
 // Məhsul detalı modali üçün funksiyalar
 function openProductDetail(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = products.find(p => Number(p.id) === Number(productId));
     if (!product) return;
 
     const descText = getProductDescription(product);
@@ -407,8 +407,9 @@ function toggleCardInputs(paymentMethod) {
 }
 
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    const existing = cart.find(item => item.id === productId);
+    const product = products.find(p => Number(p.id) === Number(productId));
+    if (!product) return;
+    const existing = cart.find(item => Number(item.id) === Number(productId));
     if (existing) {
         existing.quantity += 1;
     } else {
@@ -452,7 +453,7 @@ function closeCart() {
 }
 
 function removeFromCart(id) {
-    cart = cart.filter(i => i.id !== id);
+    cart = cart.filter(i => Number(i.id) !== Number(id));
     localStorage.setItem('ab_cart', JSON.stringify(cart));
     openCart();
     updateCartBadge();
@@ -628,5 +629,3 @@ function updateHeaderUserMenu() {
         `;
     }
 }
-
-loadBackendData();
